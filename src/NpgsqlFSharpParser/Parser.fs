@@ -417,7 +417,7 @@ let declareQuery =
 
 let spacesOrComment =
     let comment = skipString "/*" >>. (charsTillString "*/" true 8096)
-    let commentEol = skipString "--" >>. skipRestOfLine true
+    let commentEol = many (skipString "--" >>. skipRestOfLine true)
 
     spaces .>>
     optional comment .>>

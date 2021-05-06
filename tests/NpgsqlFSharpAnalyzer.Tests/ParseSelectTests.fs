@@ -525,6 +525,13 @@ let selectQueryTests = testList "Parse SELECT tests" [
     }
 
     testSelect """
+        -- This is a comment
+        -- This another comment
+        SELECT 1""" {
+        SelectExpr.Default with Columns = [Expr.Integer 1]
+    }
+
+    testSelect """
         /* Comment inserted first */
         SELECT 1""" {
         SelectExpr.Default with Columns = [Expr.Integer 1]
